@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <meta name="description" content="{{ bio }}">
+
+    <link rel="stylesheet" href="/modules/mastodon-timeline.min.css">
+    <script src="/modules/mastodon-timeline.umd.js"></script>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="shortcut icon" href="/favicon.png">
+    <style>
+        :root {
+            --primary: {{ primary }};
+            --secondary: {{ secondary }};
+        }
+        svg {
+            fill: currentColor;
+        }
+        .mask-icon {
+            background: currentColor;
+            mask: var(--mask);
+            mask-size: 1.5rem;
+        }
+        .si-icon svg,
+        .mask-icon {
+            display: inline-block;
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <section class="header">
+            <img src="/favicon.png" alt="Favicon" class="favicon" width="128" height="128">
+            <h1 class="title">{{ title }}</h1>
+            <div id="pronouns" class="pronouns" title="Prononus: {{ pronouns }}">{{ pronouns }}</div>
+            <div id="badges" class="badges">
+                <ul>
+                    {% for key, badge in badges %}
+                    <li>
+                        <a href="{{ badge.url }}" id="badge-{{ key }}">
+                            <img src="{{ badge.img }}" alt="{{ badge.title }}" title="{{ badge.title }}" height="18">
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>            
+            <div id="social" class="header-social">
+                <ul>
+                    {% for key, data in items.social %}
+                    {% if key != "title" %}
+                    <li>
+                        <a rel="me" href="{{ data.url }}">
+                            {% if not data.customIcon %}
+                                <span class="si-icon">{% icon "si:" + key %}</span>
+                            {% endif %}
+                            {% if data.customIcon %}
+                                <span class="mask-icon" style="--mask: url({{ data.customIcon }})"></span>
+                            {% endif %}
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+            <div id="bio" class="bio">{{ bio }}</div>
+        </section>
+
+        <section class="items" id="items">
+            {% for category, links in items %}
+            <details id="items-{{ category }}" open>
+                <summary>
+                    <a href="#items-{{ category }}" class="anchor">#</a>
+                    <h2>{{ links.title }}</h2>
+                </summary>
+                <ul>
+                    {% for key, data in links %}
+                    {% if key != "title" %}
+                    <li>
+                        <a rel="me" id="items-{{ category }}-{{ key }}" href="{{ data.url }}">
+                            {% if not data.customIcon %}
+                                <span class="si-icon">{% icon "si:" + key %}</span>
+                            {% endif %}
+                            {% if data.customIcon %}
+                                <span class="mask-icon" style="--mask: url({{ data.customIcon }})"></span>
+                            {% endif %}
+                            <span class="link">{{ data.title }}</span>
+                        </a>                        
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+            </details>
+            {% endfor %}
+        </section>
+
+        <section class="featured" id="featured">
+            {% for category, items in featured %}
+            <details id="featured-{{ category }}" open>
+                <summary>
+                    <a href="#featured-{{ category }}" class="anchor">#</a>
+                    <h2>{{ items.title }}</h2>
+                </summary>
+                <ul>
+                    {% for key, project in items %}
+                    {% if key != "title" %}
+                    <li>
+                        <a href="{{ project.url }}" id="featured-{{ category }}-{{ key }}">
+                            <div class="featured-item">
+                                <img src="{{ project.cover }}" alt="{{ project.title }}">
+                                <div class="info">
+                                    <h3>{{ project.title }}</h3>
+                                    <p>{{ project.summary }}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+            </details>
+            {% endfor %}
+        </section>
+
+        {% if mastodon %}
+        <section class="mastodon-feed" id="mastodon-feed">
+            <div id="mt-container" class="mt-container">
+                <div class="mt-body" role="feed">
+                  <div class="mt-loading-spinner"></div>
+                </div>
+              </div>              
+        </section>
+        {% endif %}
+        
+    </main>
+
+    <footer>
+        <span>Powered by 11micro (11ty)</span>
+        <a href="https://github.com/LIGMATV/11micro" class="btn">Create your own bio</a>
+    </footer>
+
+    {% if mastodon %}
+    <script>
+        const myTimeline = new MastodonTimeline.Init({
+            instanceUrl: "{{ mastodon.instance }}",
+            timelineType: "profile",
+            userId: "{{ mastodon.id }}",
+            profileName: "{{ mastodon.handle }}"
+        });
+    </script>
+    {% endif %}
+
+</body>
+
+</html>
