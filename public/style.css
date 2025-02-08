@@ -5,6 +5,7 @@
 html {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     scroll-behavior: smooth;
+    color: #000;
 }
 
 body {
@@ -84,7 +85,6 @@ h2 {
     align-items: center;
     gap: .5rem;
     margin: .75rem 0;
-    transition: .15s;
 }
 
 .items li a>* {
@@ -96,8 +96,6 @@ h2 {
 }
 
 .items li a:hover {
-    transform: scale(1.065);
-    margin-left: .65rem;
     color: var(--accent);
 }
 
@@ -115,11 +113,11 @@ h2 {
     border: .25rem solid #e8e8e8;
     border-radius: .75rem;
     margin: 1.25rem 0;
-    transition: .15s;
+    transition: transform .15s;
 }
 
 .featured .featured-item:hover {
-    transform: scale(1.035);
+    transform: scale(1.025);
     border-color: var(--accent);
     color: var(--accent);
 }
@@ -139,7 +137,7 @@ h2 {
     margin: 0;
 }
 
-details:first-child>summary {
+details:first-child>summary:not(.feed summary) {
     margin-top: 0;
 }
 
@@ -187,32 +185,28 @@ summary:hover .anchor {
 }
 
 .mt-container {
-    max-height: 100vh;
+    max-height: calc(100vh + 4rem);
     overflow-y: auto;
 }
 
 .mt-body {
     padding: 0;
     position: relative;
+    margin-bottom: 0;
 }
 
 .mt-post {
-    margin: 0;
+    margin: 0 0 1rem;
     padding: 1rem 1.5rem;
 }
 
-.mt-footer {
-    background: #fff;
-    position: sticky;
-    bottom: 0;
-    padding: .5rem 0;
-    width: 100%;
-    border-top: 1px solid var(--mt-color-line-gray);
-}
-
-.mastodon-feed {
+.feed {
     overflow: hidden;
     padding: 0;
+}
+
+.feed summary {
+    margin: 1.5rem 2rem;
 }
 
 footer {
@@ -222,11 +216,16 @@ footer {
     text-align: center;
 }
 
+article a,
+footer a {
+    text-decoration: underline;
+}
+
 .btn {
     background: var(--accent);
     color: #fff;
-    padding: .55rem .75rem;
-    margin-left: 1rem;
+    padding: .25rem .45rem;
+    margin-left: .65rem;
     border-radius: .25rem;
     font-weight: 500;
 }

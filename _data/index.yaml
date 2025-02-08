@@ -1,0 +1,120 @@
+lang: en
+primary: "#07bbbc"
+secondary: "#7576ac"
+title: "LIGMATV"
+pronouns: "he/him"
+repo: "https://github.com/LIGMATV/11micro"
+badges:
+    lastfm:
+        title: "LastFM Badge"
+        img: "http://lastfm-badge.vercel.app/last-played?user=ligmatv"
+        url: "https://www.last.fm/user/ligmatv"
+    pledge:
+        title: "People Pledge"
+        img: "/people_pledge.svg"
+        url: "https://people.pledge.party/"
+bio: "Became a front-end developer after school, been there since 6th grade and have extensive knowledge of HTML, CSS and a bit of JS."
+notes:
+    metadatas:
+        title: "Metadatas"
+        content: |-
+            - 💼 Wake Up, Shower, Eat, School, Develop, Sleep _(Repeat)_
+            - 🗺️ 110.232.83.115
+    alittleaboutme:
+        title: "A little about me"
+        content: |-
+            - 💻 I'm a developer from **North Sumatra, Indonesia**. 
+            - 🏫 I'm still in the school stage, which is _not about IT_
+            - 🔢 My age increases by one year!
+            - 📝 I'm the creator of this website!
+            - 📻 I'm a [Twenty One Pilots](https://en.wikipedia.org/wiki/Twenty_One_Pilots) fans
+                - TØP, RAB, Vessel, Blurryface, Trench, S&I, Clancy
+items:
+    social:
+        title: Social
+        github:
+            title: "@ligmatv"
+            url: https://github.com/ligmatv
+        devdotto:
+            title: "@ligmatv"
+            url: https://dev.to/ligmatv
+        linkedin:
+            title: "@ligmatv"
+            url: "https://www.linkedin.com/in/ligmatv"
+            # Source: https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/linkedin.svg
+            customIcon: "<svg role='img' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><title>LinkedIn</title><path d='M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z'/></svg>"
+        mastodon: 
+            title: "@l@mementomori.social"
+            url: https://mementomori.social/@l
+        bluesky: 
+            title: "@l.birulangit.web.id"
+            url: https://bsky.app/profile/l.birulangit.web.id
+    other:
+        title: Other social
+        gitlab:
+            title: "@ligmatv"
+            url: "https://gitlab.com/LIGMATV"
+        codepen:
+            title: "@ligmatv"
+            url: "https://codepen.io/ligmatv"
+        wakatime:
+            title: "@ligmatv"
+            url: "https://wakatime.com/@ligmatv"
+        lastdotfm:
+            title: "@ligmatv"
+            url: "https://www.last.fm/user/ligmatv"
+        x:
+            title: "@ligmatv"
+            url: "https://x.com/ligmatv"
+        pixelfed:
+            title: "@ligmatv@pixelfed.social"
+            url: "https://pixelfed.social/ligmatv"
+        lemmy:
+            title: "@ligmatv@programming.dev"
+            url: "https://programming.dev/u/LIGMATV"
+        threads:
+            title: "@ligma.tv"
+            url: "https://threads.net/ligma.tv"
+        gravatar:
+            title: "@ligmatvid"
+            url: "https://gravatar.com/ligmatvid"
+    indonesian:
+        title: Indonesia
+        misskey:
+            title: "@ligmatv@misskey.id"
+            url: "https://misskey.id/@ligmatv"
+        mastodon:
+            title: "@l@fedi.my.id"
+            url: "https://fedi.my.id/@l"
+    kdensport:
+        title: Kdensport
+        youtube:
+            title: "@kdensport"
+            url: "https://youtube.com/@kdensport"
+        tiktok:
+            title: "@kdensport"
+            url: "https://tiktok.com/@kdensport"
+featured:
+    projects:
+        title: Projects
+        11ty-beer:
+            cover: "/11ty-beer.webp"
+            title: "11ty Beer"
+            summary: "🍻✨ An 11ty blog template with Material Design, PWA and minified files that simply works."
+            url: "https://github.com/LIGMATV/11ty-beer"
+        boredown:
+            cover: "/boredown.webp"
+            title: "boredown"
+            summary: "📝💯 Portable static site generator with frontmatter & math feature, without HTML & JS knowledge."
+            url: "https://github.com/LIGMATV/boredown"
+        gmx-css:
+            cover: "/gmx-css.webp"
+            title: "GMX.css"
+            summary: "GMX.css implements the Material 3 design system in Vanilla CSS/JS, from the components to the animations to the theming."
+            url: "https://github.com/LIGMATV/gmx.css"
+mastodon:
+    instance: "https://mementomori.social"
+    id: "112120713486109578"
+    username: "l"
+bluesky:
+    username: "l.birulangit.web.id"
