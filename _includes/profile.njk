@@ -11,7 +11,7 @@
     <script src="/modules/mastodon-timeline.umd.js"></script>
     <script src="/modules/bsky-embed.umd.js"></script>
     <link rel="stylesheet" href="/style.css">
-    <link rel="shortcut icon" href="/favicon.png">
+    <link rel="shortcut icon" href="{{ index.favicon }}">
     <style>
         :root {
             --primary: {{ index.primary }};
@@ -29,7 +29,7 @@
 <body>
     <main>
         <section class="header">
-            <img src="/favicon.png" alt="Favicon" class="favicon" width="128" height="128">
+            <img src="{{ index.favicon }}" alt="Favicon" class="favicon" width="128" height="128">
             <h1 class="title">{{ index.title }}</h1>
             <div id="pronouns" class="pronouns" title="Prononus: {{ index.pronouns }}">{{ index.pronouns }}</div>
             <div id="badges" class="badges">
