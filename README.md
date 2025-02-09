@@ -14,15 +14,25 @@ Link in bio/digital identity that is truly yours, created statically + Feeds for
 
 ## What is this?
 
-It's like Linktree, you can add links and small notes but in specified quantities and customizations. The design is really inspired by Gravatar and Omg.lol. It's not have an really big button for each link, instead it's look like an neatly arranged list with icons.
+It's like Linktree, you can add links and small notes but in specified quantities and customizations. The design is really inspired by Gravatar and Omg.lol. It's not have an really big button for each link, instead it's look like an neatly arranged list with icons.  
+It's have multiple profiles ability like in Linktree, to configure them you can create an new file in `profiles` like `new.md` and in `_data` is `new.yaml`.
+
+**But why use YAML and don't use JSON under hood?** It's make anyone easier to understanding on add data, also YAML supporting multiline code which is used in Notes. The code is neatly arranged and not confusing, without a GUI, almost anyone can understand a code layout like this. To make this YAML data works, we using `js-yaml` package.
+
+## Profiles
+
+To create a profile in index.html, you can built a file `profiles/index.md` with this content:
+```md
+---
+permalink: /index.html
+data: foobar
+---
+```
+You can edit the `data` value to the configuration file name you created. Like `_data/foobar.yaml`, so the `data` value is `foobar`.
 
 ## Configuration
 
-All the configuration you needed to edit is just the [`_data/index.yaml`](_data/index.yaml).  
-**But why use YAML and don't use JSON under hood?** It's make anyone easier to understanding on add data, also YAML supporting multiline code which is used in Notes. The code is neatly arranged and not confusing, without a GUI, almost anyone can understand a code layout like this.  
-To make this YAML data works, we using `js-yaml` package.
-
-You may see an comments in that file like `# Site configuration` or `# Notes (Markdown supported!)`. You can learn from that and starting to edit your datas.
+After create profile like `profiles/index.md`, later you need to edit the configuration file (`_data/foobar.yaml`).
 
 ### Site configuration
 
@@ -37,7 +47,7 @@ secondary: "#8163ff"
 ```
 
 ### Basic biodata
-<img src="https://i.imgur.com/yt3xJCV.png" width="250" align="right">
+<img src="public/1.png" width="250" align="right">
 
 ```yaml
 title: "Foo Bar"
@@ -52,7 +62,7 @@ bio: "I'm foo bar, I'm not real, I'm just a placeholder. Sad, right?"
 Note that the social links here is from `items.social`.
 
 ### Notes
-<img src="https://i.imgur.com/9wK8Mos.png" width="300" align="right">
+<img src="public/2.png" width="300" align="right">
 
 ```yaml
 # Notes (Markdown supported!)
@@ -72,7 +82,7 @@ notes:
 ```
 
 ### Items
-<img src="https://i.imgur.com/CinvMWq.png" width="350" align="right">
+<img src="public/3.png" width="350" align="right">
 
 ```yaml
 # Link items
@@ -105,7 +115,7 @@ items:
 All the link items are have `rel="me"` attribute, so you can easily verify your links.
 
 ### Featured links
-<img src="https://i.imgur.com/WfuGLR6.png" width="200" align="right">
+<img src="public/4.png" width="200" align="right">
 
 ```yaml
 # Featured links
@@ -125,8 +135,8 @@ featured:
 ```
 
 ### Feeds
-<img src="https://i.imgur.com/Mzhhlp2.png" width="200" align="right">
-<img src="https://i.imgur.com/QOLQnyE.jpeg" width="200" align="right">
+<img src="public/6.png" width="200" align="right">
+<img src="public/5.png" width="200" align="right">
 
 ```yaml
 # Feeds
@@ -142,6 +152,20 @@ Powered by [`@idotj/mastodon-embed-timeline`](https://gitlab.com/idotj/mastodon-
 
 <br><br><br><br>
 
-# License
+## Deploy
+
+Deploy with Vercel:  
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FLIGMATV%2F11micro)
+
+## Dependencies
+
+- [@11ty/eleventy](https://www.npmjs.com/package/@11ty/eleventy)
+- [@idotj/mastodon-embed-timeline](https://www.npmjs.com/package/@idotj/mastodon-embed-timeline)
+- [bsky-embed](https://www.npmjs.com/package/bsky-embed)
+- [eleventy-plugin-icons](https://www.npmjs.com/package/eleventy-plugin-icons)
+- [js-yaml](https://www.npmjs.com/package/js-yaml)
+- [simple-icons](https://www.npmjs.com/package/simple-icons)
+
+## License
 
 [GNU Affero General Public License v3.0](https://github.com/LIGMATV/11micro/blob/main/LICENSE)
