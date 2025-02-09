@@ -12,7 +12,7 @@ Link in bio/digital identity that is truly yours, created statically + Feeds for
  - Customizable, the code and styling is truly yours!
  - Feeds for Mastodon and Bluesky
 
-## What is this?
+## What?
 
 It's like Linktree, you can add links and small notes but in specified quantities and customizations. The design is really inspired by Gravatar and Omg.lol. It's not have an really big button for each link, instead it's look like an neatly arranged list with icons.  
 It's have multiple profiles ability like in Linktree, to configure them you can create an new file in `profiles` like `new.md` and in `_data` is `new.yaml`.
@@ -154,8 +154,69 @@ Powered by [`@idotj/mastodon-embed-timeline`](https://gitlab.com/idotj/mastodon-
 
 ## Deploy
 
-Deploy with Vercel:  
+### Vercel
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FLIGMATV%2F11micro)
+
+### GitHub Pages
+
+1. On the repository, click "Settings" tab.  
+   ![1](https://github.com/user-attachments/assets/3b4064c6-e154-4bde-9c00-8c3dd3b9aa99)
+   
+2. On the Settings, click "Pages" tab at sidebar.  
+   ![2](https://github.com/user-attachments/assets/505dd38b-f530-49c3-bcf6-fe3cf988c65b)
+   
+3. Under the "Build and deployment", Click the "Deploy from a branch" and select "GitHub Actions".  
+   ![3](https://github.com/user-attachments/assets/405f4c31-c790-41ae-8dc1-bb77ab97f396)
+   ![4](https://github.com/user-attachments/assets/2c55c56a-f434-4dae-8aa9-95fe3f0b60b4)
+   
+4. Click "create your own"  
+   ![5](https://github.com/user-attachments/assets/0b874afb-df57-4386-81d6-a0cf93bf6362)
+   
+5. Fill the file name "`build-11ty.yml`"  
+   ![6](https://github.com/user-attachments/assets/766a574e-bea7-4dfa-a6d5-8aa5fe7de2c2)
+   
+6. Fill the content with this code: (Source: https://github.com/11ty/eleventy/discussions/1455#discussioncomment-6894194)  
+   ```yaml
+   name: build 11ty site
+
+   on:
+     push:
+       branches: ["main"]
+   
+   permissions:
+     contents: read
+     pages: write
+     id-token: write
+   
+   concurrency:
+     group: "pages"
+     cancel-in-progress: false
+   
+   jobs:
+   
+     build:
+       runs-on: ubuntu-latest
+       steps:
+         - uses: actions/checkout@v3
+         - uses: actions/setup-node@v3
+         - name: Install dependencies & build
+           run: |
+             npm install
+             npx @11ty/eleventy
+         - uses: actions/upload-pages-artifact@v2
+   
+     deploy:
+       runs-on: ubuntu-latest
+       needs: build
+       steps:
+         - id: deployment
+           uses: actions/deploy-pages@v2
+       environment:
+         name: github-pages
+         url: ${{ steps.deployment.outputs.page_url }}
+    ```
+
+7. Commit the changes and the build will get started.
 
 ## Dependencies
 
