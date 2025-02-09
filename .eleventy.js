@@ -13,6 +13,15 @@ module.exports = function (eleventyConfig) {
         "node_modules/bsky-embed/dist/bsky-embed.umd.js": "/modules/bsky-embed.umd.js",
     });
 
+    /*
+    Search to data that applied in frontmatter
+    */
+    eleventyConfig.addGlobalData("eleventyComputed", {
+        getData: (data) => {
+            return data[data.data] || {};
+        }
+    });
+
     /* 
     Markdown-It 'markdownify' filter
     Source: 
@@ -24,17 +33,23 @@ module.exports = function (eleventyConfig) {
         linkify: true,
         typographer: true,
     });
-
     eleventyConfig.addFilter("markdownify", (markdownString) =>
         md.render(markdownString)
     );
-
     eleventyConfig.addFilter("markdownifyInline", (markdownString) =>
         md.renderInline(markdownString)
     );
 
+    /*
+    YAML Custom Data
+    Source: https://www.11ty.dev/docs/data-custom/#yaml
+    */
     eleventyConfig.addDataExtension("yaml", (contents) => yaml.load(contents));
 
+    /*
+    Add eleventy-plugin-icons and simple-icons
+    Source: https://github.com/uncenter/eleventy-plugin-icons
+    */
     eleventyConfig.addPlugin(pluginIcons, {
         mode: 'inline',
         sources: [{

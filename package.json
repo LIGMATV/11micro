@@ -1,12 +1,18 @@
 {
   "name": "11micro",
   "version": "1.0.0",
+  "description": "Link in bio/digital identity that is truly yours, created statically + Feeds for Mastodon & Bluesky",
   "scripts": {
     "start": "npx @11ty/eleventy --serve",
     "build": "npx @11ty/eleventy"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "website-template",
+    "linktree-alternative",
+    "link-in-bio",
+    "11ty-starter"
+  ],
+  "author": "LIGMATV",
   "license": "GNU",
   "dependencies": {
     "@11ty/eleventy": "^3.0.0",

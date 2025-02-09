@@ -1,0 +1,19 @@
+# Site configuration
+lang: en
+favicon: "https://avatars.githubusercontent.com/u/143163098"
+repo: "https://github.com/LIGMATV/11micro"
+primary: "#07bbbc"
+secondary: "#7576ac"
+
+# Basic biodata
+title: "LIGMATV"
+pronouns: "they/them"
+badges:
+    pledge:
+        title: "LastFM Last Played"
+        img: "http://lastfm-badge.vercel.app/last-played?user=ligmatv"
+        url: "https://people.pledge.party/"
+bio: "I'm LIGMATV, thanks for your presence. I'm a
+      frontend developer from Indonesia, especially
+      North Sumatra province. Has experiencing in
+      HTML, CSS, and a bit JS since 2023."

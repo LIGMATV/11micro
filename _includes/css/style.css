@@ -14,6 +14,13 @@ body {
     background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%);
 }
 
+svg:not([fill=none]) {
+    fill: currentColor;
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
 a {
     color: inherit;
     text-decoration: none;
@@ -27,6 +34,7 @@ video {
 main {
     width: 95%;
     max-width: 36rem;
+    min-height: 100vh;
     margin: 2rem auto;
     font-size: 1.25rem;
     line-height: 1.45;
