@@ -45,7 +45,7 @@
             <div id="social" class="header-social">
                 <ul>
                     {% for key, data in getData.items.social %}
-                    {% if key != "title" %}
+                    {% if key != "title" and key != "description" %}
                     <li>
                         <a rel="me" href="{{ data.url }}">
                             {% if not data.customIcon %}
@@ -86,10 +86,13 @@
                 <summary>
                     <a href="#items-{{ category }}" class="anchor">#</a>
                     <h2>{{ links.title }}</h2>
+                    {% if links.description %}
+                    <div class="description">{{ links.description | markdownify | safe }}</div>    
+                    {% endif %}   
                 </summary>
                 <ul>
                     {% for key, data in links %}
-                    {% if key != "title" %}
+                    {% if key != "title" and key != "description" %}
                     <li>
                         <a rel="me" id="items-{{ category }}-{{ key }}" href="{{ data.url }}">
                             {% if not data.customIcon %}
@@ -99,7 +102,10 @@
                                 <span class="custom-icon" title="{{ key | capitalize }}">{{ data.customIcon | markdownifyInline | safe }}</span>
                             {% endif %}
                             <span class="link">{{ data.title }}</span>
-                        </a>                        
+                        </a>        
+                        {% if data.description %}
+                            <div class="description">{{ data.description | markdownify | safe }}</div>
+                        {% endif %}                
                     </li>
                     {% endif %}
                     {% endfor %}
@@ -116,14 +122,17 @@
                 <summary>
                     <a href="#featured-{{ category }}" class="anchor">#</a>
                     <h2>{{ items.title }}</h2>
+                    {% if items.description %}
+                    <div class="description">{{ items.description | markdownify | safe }}</div>    
+                    {% endif %}   
                 </summary>
                 <ul>
                     {% for key, project in items %}
-                    {% if key != "title" %}
+                    {% if key != "title" and key != "description" %}
                     <li>
                         <a href="{{ project.url }}" id="featured-{{ category }}-{{ key }}">
                             <div class="featured-item">
-                                <img src="{{ project.cover }}" alt="{{ project.title }}">
+                                <img src="{{ project.cover }}" alt="{{ project.title }}" width="100%" height="250px">
                                 <div class="info">
                                     <h3>{{ project.title }}</h3>
                                     <p>{{ project.summary }}</p>
@@ -144,8 +153,10 @@
             <details open>
                 <summary>
                     <a href="#mastodon-feed" class="anchor">#</a>
-                    <h2> {% icon "si:mastodon" %} Mastodon Feed</h2>
-                    <a class="btn" href="{{ getData.mastodon.instance }}/@{{ getData.mastodon.username }}">Open</a>
+                    <h2> {% icon "si:mastodon" %} {{ getData.mastodon.title }}</h2>
+                    <a class="btn" href="{{ getData.mastodon.instance }}/@{{ getData.mastodon.username }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><title>Open in New Tab</title><path fill="currentColor" d="M14 3v2h3.59l-9.83 9.83l1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2z"/></svg>
+                    </a>
                 </summary>
                 <div id="mt-container" class="mt-container">
                     <div class="mt-body" role="feed">
@@ -161,8 +172,10 @@
             <details open>
                 <summary>
                     <a href="#bsky-feed" class="anchor">#</a>
-                    <h2> {% icon "si:bluesky" %} Bluesky Feed</h2>
-                    <a class="btn" href="https://bsky.app/profile/{{ getData.bluesky.username }}">Open</a>
+                    <h2> {% icon "si:bluesky" %} {{ getData.bluesky.title }}</h2>
+                    <a class="btn" href="https://bsky.app/profile/{{ getData.bluesky.username }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><title>Open in New Tab</title><path fill="currentColor" d="M14 3v2h3.59l-9.83 9.83l1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2z"/></svg>
+                    </a>
                 </summary>
                 <bsky-embed
                     username="{{ getData.bluesky.username }}"
