@@ -98,9 +98,7 @@
                             <h3>{{ post.data.title }}</h3>
                         </a>
                         <div class="description"><i>{{ post.data.description }}</i></div>
-                        <div><time
-                                datetime="{{ post.date | dateConfig('YYYY-MM-DD') }}">{{ post.date | dateConfig('WeekdayAbbr, DD MonthAbbr YYYY') }}</time>
-                        </div>
+                        <div class="date"><time datetime="{{ post.date | dateConfig('YYYY-MM-DD') }}">{{ post.date | dateConfig('WeekdayAbbr, DD MonthAbbr YYYY') }}</time></div>
                     </li>
                     {% endif %}
                     {% endfor %}
@@ -229,7 +227,7 @@
         <span>Powered by <a href="https://github.com/LIGMATV/11micro">11micro</a> (<a
                 href="https://www.11ty.dev/docs/">11ty</a>).</span>
         {% if _meta.repo %}
-        <span><a href="{{ _meta.repo }}/blob/main/_data/{{ data }}.yaml">Data source</a></span>
+        <span><a href="{{ _meta.repo }}/blob/main/src/_data/{{ data }}.yaml">Data source</a></span>
         {% endif %}
     </footer>
 

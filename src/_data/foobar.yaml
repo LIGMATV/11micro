@@ -49,7 +49,7 @@ items:
             url: https://mastodon.social/@foobar
         bluesky: 
             title: "@foobar.bsky.social"
-            url: https://bsky.app/profile/foobar.bsky.socia
+            url: https://bsky.app/profile/foobar.bsky.social
     other:
         title: "Other social"
         description: "My other accounts, not checked frequently."

@@ -28,10 +28,8 @@ title: My Rad Blog
                 <span>{{ authorData.title }}</span>
             </a>
             <h1 class="title">{{ title }}</h1>
-            <div class="description">{{ description }}</div>
-            <span>
-                <time datetime="{{ date | dateConfig("YYYY-MM-DD") }}">{{ date | dateConfig("WeekdayAbbr, DD MonthAbbr YYYY") }}</time>
-            </span>
+            <div class="description"><i>{{ description }}</i></div>
+            <div class="date"><time datetime="{{ date | dateConfig("YYYY-MM-DD") }}">{{ date | dateConfig("WeekdayAbbr, DD MonthAbbr YYYY") }}</time></div>
         </header>
         <article>
             {{ content | safe }}
