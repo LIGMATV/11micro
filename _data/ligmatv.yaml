@@ -1,7 +1,6 @@
 # Site configuration
-lang: en
 favicon: "https://avatars.githubusercontent.com/u/143163098"
-repo: "https://github.com/LIGMATV/11micro"
+link: "/ligmatv"
 primary: "#07bbbc"
 secondary: "#7576ac"
 
@@ -12,7 +11,7 @@ badges:
     pledge:
         title: "LastFM Last Played"
         img: "http://lastfm-badge.vercel.app/last-played?user=ligmatv"
-        url: "https://people.pledge.party/"
+        url: "https://www.last.fm/user/ligmatv"
 bio: "I'm LIGMATV, thanks for your presence. I'm a
       frontend developer from Indonesia, especially
       North Sumatra province. Has experiencing in

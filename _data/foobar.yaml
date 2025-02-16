@@ -1,7 +1,6 @@
 # Site configuration
-lang: en
 favicon: "/favicon.svg"
-repo: "https://github.com/LIGMATV/11micro"
+link: "/"
 primary: "#ff6363"
 secondary: "#8163ff"
 
@@ -76,6 +75,10 @@ featured:
             title: "Hacking service"
             summary: "I have hacking service, atleast for your school computers."
             url: "https://undraw.co/"
+
+posts:
+    title: "Posts"
+    description: My long-form posts. [**(Available as Global RSS!)**](/feed.xml)
 
 # Feeds
 mastodon:

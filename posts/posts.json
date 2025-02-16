@@ -1,0 +1,5 @@
+{
+    "tags": "posts",
+    "layout": "layouts/post.njk",
+    "permalink": "/posts/{{ page.date | dateConfig('YYYY/MM/DD') }}/{{ page.fileSlug }}/"
+}

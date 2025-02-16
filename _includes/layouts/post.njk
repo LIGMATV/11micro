@@ -1,0 +1,41 @@
+---
+title: My Rad Blog
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} — {{ authorData.title }}</title>
+    <meta name="description" content="{{ description }}">
+    <meta name="generator" content="Eleventy v3.0.0">
+    <link rel="shortcut icon" href="{{ authorData.favicon }}">
+    <style>
+        :root {
+            --primary: {{ authorData.primary }};
+            --secondary: {{ authorData.secondary }};
+        } 
+
+        {% include "css/post.css" %}
+    </style>
+  </head>
+  <body>
+    <main>
+        <header>
+            <a class="author" href="{{ authorData.link }}">
+                <img src="{{ authorData.favicon }}" alt="Favicon" class="favicon" width="32" height="32">
+                <span>{{ authorData.title }}</span>
+            </a>
+            <h1 class="title">{{ title }}</h1>
+            <div class="description">{{ description }}</div>
+            <span>
+                <time datetime="{{ date | dateConfig("YYYY-MM-DD") }}">{{ date | dateConfig("WeekdayAbbr, DD MonthAbbr YYYY") }}</time>
+            </span>
+        </header>
+        <article>
+            {{ content | safe }}
+        </article>
+    </main>
+  </body>
+</html>

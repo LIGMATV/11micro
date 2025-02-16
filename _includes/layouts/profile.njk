@@ -1,39 +1,39 @@
 <!DOCTYPE html>
-<html lang="{{ getData.lang }}">
+<html lang="{{ _meta.lang }}">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ getData.title }}</title>
-    <meta name="description" content="{{ getData.bio }}">
+    <title>{{ profileData.title }}</title>
+    <meta name="description" content="{{ profileData.bio }}">
     <meta name="generator" content="Eleventy v3.0.0">
-    <link rel="shortcut icon" href="{{ getData.favicon }}">
-    {% if getData.mastodon %}
+    <link rel="shortcut icon" href="{{ profileData.favicon }}">
+    {% if profileData.mastodon %}
     <script src="/modules/mastodon-timeline.umd.js"></script>
     <link rel="stylesheet" href="/modules/mastodon-timeline.min.css">
     {% endif %}
-    {% if getData.bluesky %}
+    {% if profileData.bluesky %}
     <script src="/modules/bsky-embed.umd.js"></script>
     {% endif %}
     <style>
-:root {
-    --primary: {{ getData.primary }};
-    --secondary: {{ getData.secondary }};
-} 
-
-{% include "css/style.css" %}
+        :root {
+            --primary: {{ profileData.primary }};
+            --secondary: {{ profileData.secondary }};
+        } 
+        
+        {% include "css/style.css" %}
     </style>
 </head>
 
 <body data-profile="{{ data }}">
     <main>
         <section class="header">
-            <img src="{{ getData.favicon }}" alt="Favicon" class="favicon" width="128" height="128">
-            <h1 class="title">{{ getData.title }}</h1>
-            <div id="pronouns" class="pronouns" title="Prononus: {{ getData.pronouns }}">{{ getData.pronouns }}</div>
+            <img src="{{ profileData.favicon }}" alt="Favicon" class="favicon" width="128" height="128">
+            <h1 class="title">{{ profileData.title }}</h1>
+            <div id="pronouns" class="pronouns" title="Prononus: {{ profileData.pronouns }}">{{ profileData.pronouns }}</div>
             <div id="badges" class="badges">
                 <ul>
-                    {% for key, badge in getData.badges %}
+                    {% for key, badge in profileData.badges %}
                     <li>
                         <a href="{{ badge.url }}" id="badge-{{ key }}">
                             <img src="{{ badge.img }}" alt="{{ badge.title }}" title="{{ badge.title }}" height="18">
@@ -41,18 +41,19 @@
                     </li>
                     {% endfor %}
                 </ul>
-            </div>            
+            </div>
             <div id="social" class="header-social">
                 <ul>
-                    {% for key, data in getData.items.social %}
+                    {% for key, data in profileData.items.social %}
                     {% if key != "title" and key != "description" %}
                     <li>
                         <a rel="me" href="{{ data.url }}">
                             {% if not data.customIcon %}
-                                <span class="si-icon" title="{{ key | capitalize }}">{% icon "si:" + key %}</span>
+                            <span class="si-icon" title="{{ key | capitalize }}">{% icon "si:" + key %}</span>
                             {% endif %}
                             {% if data.customIcon %}
-                                <span class="custom-icon" title="{{ key | capitalize }}">{{ data.customIcon | markdownifyInline | safe }}</span>
+                            <span class="custom-icon"
+                                title="{{ key | capitalize }}">{{ data.customIcon | markdownifyInline | safe }}</span>
                             {% endif %}
                         </a>
                     </li>
@@ -60,12 +61,12 @@
                     {% endfor %}
                 </ul>
             </div>
-            <div id="bio" class="bio">{{ getData.bio }}</div>
+            <div id="bio" class="bio">{{ profileData.bio | markdownifyInline | safe }}</div>
         </section>
 
-        {% if getData.notes %}
+        {% if profileData.notes %}
         <section class="notes" id="notes">
-            {% for key, note in getData.notes %}
+            {% for key, note in profileData.notes %}
             <details id="note-{{ key }}" open>
                 <summary>
                     <a href="#note-{{ key }}" class="anchor">#</a>
@@ -79,16 +80,45 @@
         </section>
         {% endif %}
 
-        {% if getData.items %}
+        {% if profileData.posts %}
+        <section class="posts" id="posts">
+            <details open>
+                <summary>
+                    <a href="#posts" class="anchor">#</a>
+                    <h2>{{ profileData.posts.title }}</h2>
+                    {% if profileData.posts.description %}
+                    <div class="description">{{ profileData.posts.description | markdownify | safe }}</div>
+                    {% endif %}
+                </summary>
+                <ol reversed>
+                    {% for post in collections.posts | reverse %}
+                    {% if post.data.author == data %}
+                    <li>
+                        <a href="{{ post.url }}">
+                            <h3>{{ post.data.title }}</h3>
+                        </a>
+                        <div class="description"><i>{{ post.data.description }}</i></div>
+                        <div><time
+                                datetime="{{ post.date | dateConfig('YYYY-MM-DD') }}">{{ post.date | dateConfig('WeekdayAbbr, DD MonthAbbr YYYY') }}</time>
+                        </div>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ol>
+            </details>
+        </section>
+        {% endif %}
+
+        {% if profileData.items %}
         <section class="items" id="items">
-            {% for category, links in getData.items %}
+            {% for category, links in profileData.items %}
             <details id="items-{{ category }}" open>
                 <summary>
                     <a href="#items-{{ category }}" class="anchor">#</a>
                     <h2>{{ links.title }}</h2>
                     {% if links.description %}
-                    <div class="description">{{ links.description | markdownify | safe }}</div>    
-                    {% endif %}   
+                    <div class="description">{{ links.description | markdownify | safe }}</div>
+                    {% endif %}
                 </summary>
                 <ul>
                     {% for key, data in links %}
@@ -96,16 +126,17 @@
                     <li>
                         <a rel="me" id="items-{{ category }}-{{ key }}" href="{{ data.url }}">
                             {% if not data.customIcon %}
-                                <span class="si-icon" title="{{ key | capitalize }}">{% icon "si:" + key %}</span>
+                            <span class="si-icon" title="{{ key | capitalize }}">{% icon "si:" + key %}</span>
                             {% endif %}
                             {% if data.customIcon %}
-                                <span class="custom-icon" title="{{ key | capitalize }}">{{ data.customIcon | markdownifyInline | safe }}</span>
+                            <span class="custom-icon"
+                                title="{{ key | capitalize }}">{{ data.customIcon | markdownifyInline | safe }}</span>
                             {% endif %}
                             <span class="link">{{ data.title }}</span>
-                        </a>        
+                        </a>
                         {% if data.description %}
-                            <div class="description">{{ data.description | markdownify | safe }}</div>
-                        {% endif %}                
+                        <div class="description">{{ data.description | markdownify | safe }}</div>
+                        {% endif %}
                     </li>
                     {% endif %}
                     {% endfor %}
@@ -115,16 +146,16 @@
         </section>
         {% endif %}
 
-        {% if getData.featured %}
+        {% if profileData.featured %}
         <section class="featured" id="featured">
-            {% for category, items in getData.featured %}
+            {% for category, items in profileData.featured %}
             <details id="featured-{{ category }}" open>
                 <summary>
                     <a href="#featured-{{ category }}" class="anchor">#</a>
                     <h2>{{ items.title }}</h2>
                     {% if items.description %}
-                    <div class="description">{{ items.description | markdownify | safe }}</div>    
-                    {% endif %}   
+                    <div class="description">{{ items.description | markdownify | safe }}</div>
+                    {% endif %}
                 </summary>
                 <ul>
                     {% for key, project in items %}
@@ -148,61 +179,67 @@
         </section>
         {% endif %}
 
-        {% if getData.mastodon %}
+        {% if profileData.mastodon %}
         <section class="feed" id="mastodon-feed">
             <details open>
                 <summary>
                     <a href="#mastodon-feed" class="anchor">#</a>
-                    <h2> {% icon "si:mastodon" %} {{ getData.mastodon.title }}</h2>
-                    <a class="btn" href="{{ getData.mastodon.instance }}/@{{ getData.mastodon.username }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><title>Open in New Tab</title><path fill="currentColor" d="M14 3v2h3.59l-9.83 9.83l1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2z"/></svg>
+                    <h2> {% icon "si:mastodon" %} {{ profileData.mastodon.title }}</h2>
+                    <a class="btn" href="{{ profileData.mastodon.instance }}/@{{ profileData.mastodon.username }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <title>Open in New Tab</title>
+                            <path fill="currentColor"
+                                d="M14 3v2h3.59l-9.83 9.83l1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2z" />
+                        </svg>
                     </a>
                 </summary>
                 <div id="mt-container" class="mt-container">
                     <div class="mt-body" role="feed">
                         <div class="mt-loading-spinner"></div>
                     </div>
-                </div>  
-            </details>            
+                </div>
+            </details>
         </section>
         {% endif %}
 
-        {% if getData.bluesky %}
+        {% if profileData.bluesky %}
         <section class="feed" id="bsky-feed">
             <details open>
                 <summary>
                     <a href="#bsky-feed" class="anchor">#</a>
-                    <h2> {% icon "si:bluesky" %} {{ getData.bluesky.title }}</h2>
-                    <a class="btn" href="https://bsky.app/profile/{{ getData.bluesky.username }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><title>Open in New Tab</title><path fill="currentColor" d="M14 3v2h3.59l-9.83 9.83l1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2z"/></svg>
+                    <h2> {% icon "si:bluesky" %} {{ profileData.bluesky.title }}</h2>
+                    <a class="btn" href="https://bsky.app/profile/{{ profileData.bluesky.username }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <title>Open in New Tab</title>
+                            <path fill="currentColor"
+                                d="M14 3v2h3.59l-9.83 9.83l1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2z" />
+                        </svg>
                     </a>
                 </summary>
-                <bsky-embed
-                    username="{{ getData.bluesky.username }}"
-                    limit="20"
-                    load-more="true"
+                <bsky-embed username="{{ profileData.bluesky.username }}" limit="20" load-more="true"
                     custom-styles="section { max-height: calc(100vh + 4rem); overflow-y: auto; overflow-x: hidden; }">
                 </bsky-embed>
             </details>
-        </section>   
+        </section>
         {% endif %}
 
     </main>
 
     <footer>
-        <span>Powered by <a href="https://github.com/LIGMATV/11micro">11micro</a> (<a href="https://www.11ty.dev/docs/">11ty</a>).</span>
-        {% if getData.repo %}
-        <span><a href="{{ getData.repo }}/blob/main/_data/{{ data }}.yaml">Data source</a></span>
+        <span>Powered by <a href="https://github.com/LIGMATV/11micro">11micro</a> (<a
+                href="https://www.11ty.dev/docs/">11ty</a>).</span>
+        {% if _meta.repo %}
+        <span><a href="{{ _meta.repo }}/blob/main/_data/{{ data }}.yaml">Data source</a></span>
         {% endif %}
     </footer>
 
-    {% if getData.mastodon %}
+    {% if profileData.mastodon %}
     <script>
         const myTimeline = new MastodonTimeline.Init({
-            instanceUrl: "{{ getData.mastodon.instance }}",
+            instanceUrl: "{{ profileData.mastodon.instance }}",
             timelineType: "profile",
-            userId: "{{ getData.mastodon.id }}",
-            profileName: "@{{ getData.mastodon.username }}"
+            userId: "{{ profileData.mastodon.id }}",
+            profileName: "@{{ profileData.mastodon.username }}"
         });
     </script>
     {% endif %}

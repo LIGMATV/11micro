@@ -1,7 +1,11 @@
 const yaml = require("js-yaml");
 const pluginIcons = require('eleventy-plugin-icons');
 
-module.exports = function (eleventyConfig) {
+module.exports = async function (eleventyConfig) {
+    const { IdAttributePlugin } = await import("@11ty/eleventy");
+
+    eleventyConfig.addPlugin(IdAttributePlugin);
+
     eleventyConfig.addPassthroughCopy({
         public: "/"
     });
@@ -14,12 +18,31 @@ module.exports = function (eleventyConfig) {
     });
 
     /*
+    Date Configuration (e.g.: {{ date | dateConfig("YYYY-MM-DD") }})
+    Without luxon dependencies (Pure solution)
+    */
+    eleventyConfig.addFilter("dateConfig", (dateVal, formatStr = "YYYY-MM-DD", locale = "en-US") => {
+        const date = new Date(dateVal);
+    
+        const formatMap = {
+            YYYY: date.getFullYear(),
+            MM: String(date.getMonth() + 1).padStart(2, "0"),
+            DD: String(date.getDate()).padStart(2, "0"),
+            Weekday: new Intl.DateTimeFormat(locale, { weekday: "long" }).format(date),
+            WeekdayAbbr: new Intl.DateTimeFormat(locale, { weekday: "short" }).format(date),
+            Month: new Intl.DateTimeFormat(locale, { month: "long" }).format(date),
+            MonthAbbr: new Intl.DateTimeFormat(locale, { month: "short" }).format(date)
+        };
+    
+        return formatStr.replace(/\b(YYYY|MM|DD|Weekday|WeekdayAbbr|Month|MonthAbbr)\b/g, match => formatMap[match]);
+    });
+
+    /*
     Search to data that applied in frontmatter
     */
     eleventyConfig.addGlobalData("eleventyComputed", {
-        getData: (data) => {
-            return data[data.data] || {};
-        }
+        profileData: (data) => data[data.data] || {},
+        authorData: (data) => data[data.author] || {}
     });
 
     /* 
