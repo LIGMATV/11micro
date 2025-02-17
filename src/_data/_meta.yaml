@@ -1,6 +1,9 @@
 title: "Bussiness (foobar x ligmatv)"
 author: "Bussiness foolig"
 lang: en
-description: "Some bussiness's posts."
+description: "Self collab 'bussiness' company."
 repo: "https://github.com/LIGMATV/11micro"
 url: "https://11micro.vercel.app"
+giscus:
+  dataRepo: "ligmatv/11micro"
+  dataCategory: "Post Comments"

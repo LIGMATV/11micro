@@ -1,0 +1,36 @@
+---
+permalink: /profiles.html
+eleventyExcludeFromCollections: true
+---
+<!DOCTYPE html>
+<html lang="{{ _meta.lang }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ _meta.title }}</title>
+    <meta name="description" content="{{ _meta.description }}">
+    <meta name="generator" content="Eleventy v3.0.0">
+    <style>   
+        {% include "css/style.css" %}
+    </style>
+</head>
+
+<body>
+    
+<main>
+    <header>
+        <h1>Profiles list</h1>
+    </header>
+    <section>
+        <ol>
+            {% for profile in collections.profiles %}
+            <li>
+                <a href="{{ profile.url }}">{{ profile.data.data }}</a>
+            </li>
+            {% endfor %}
+        </ol>
+    </section>
+</main>
+    
+</body>

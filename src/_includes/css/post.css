@@ -1,3 +1,11 @@
+:root {
+    --accent: var(--primary);
+}
+
+[id] {
+    scroll-margin-top: 2rem;
+}
+
 html {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     scroll-behavior: smooth;
@@ -28,8 +36,11 @@ video {
 }
 
 main {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
     width: 95%;
-    max-width: 42rem;
+    max-width: 45rem;
     min-height: 100vh;
     margin: 2rem auto;
     font-size: 1.25rem;
@@ -39,12 +50,15 @@ main {
 main>* {
     background: #fff;
     padding: 1.5rem 2rem;
-    margin: 1.5rem 0;
     border-radius: .5rem;
 }
 
 header {
     text-align: center;
+}
+
+header a:hover {
+    color: var(--accent);
 }
 
 .author {
@@ -70,4 +84,40 @@ header {
 
 article {
     padding: .25rem 1.5rem;
+}
+
+.giscus {
+    min-height: calc(100vh - 3rem);
+}
+
+code:not(pre code),
+pre {
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 0 .25rem;
+    border-radius: .15rem;
+    overflow: auto;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    text-align: left;
+    padding: .4rem;
+}
+
+thead {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.035);
+}
+
+hr {
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }

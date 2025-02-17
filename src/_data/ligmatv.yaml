@@ -16,3 +16,8 @@ bio: "I'm LIGMATV, thanks for your presence. I'm a
       frontend developer from Indonesia, especially
       North Sumatra province. Has experiencing in
       HTML, CSS, and a bit JS since 2023."
+
+# Posts
+posts:
+    title: "Posts"
+    description: My long-form posts. [**(Available as Global RSS!)**](/feed.xml)

@@ -1,0 +1,48 @@
+---
+permalink: /404.html
+eleventyExcludeFromCollections: true
+---
+<!DOCTYPE html>
+<html lang="{{ _meta.lang }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 — {{ _meta.title }}</title>
+    <meta name="description" content="{{ _meta.description }}">
+    <meta name="generator" content="Eleventy v3.0.0">
+    <style>   
+        {% include "css/style.css" %}
+    </style>
+</head>
+
+<body>
+    
+<main>
+    <header>
+        <h1>404 Not Found</h1>
+        <p class="description">
+            Looks like you followed a broken link or entered a URL that doesn't exist. <a href="/">Visit index page</a>
+        </p>
+        <hr>
+        <p>
+            <code><span>01JM7</span><span id="random"></span></code>
+        </p>
+
+<script>
+function randomRequestID(length = 12) {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let result = '';
+    for (let i = 0; i < length; i++) {
+        result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
+}
+
+document.getElementById("random").textContent = randomRequestID();
+</script>
+
+    </header>
+</main>
+    
+</body>

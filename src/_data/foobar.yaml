@@ -76,6 +76,7 @@ featured:
             summary: "I have hacking service, atleast for your school computers."
             url: "https://undraw.co/"
 
+# Posts
 posts:
     title: "Posts"
     description: My long-form posts. [**(Available as Global RSS!)**](/feed.xml)
