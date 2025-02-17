@@ -6,4 +6,6 @@ repo: "https://github.com/LIGMATV/11micro"
 url: "https://11micro.vercel.app"
 giscus:
   dataRepo: "ligmatv/11micro"
+  dataRepoID: "R_kgDON1R6_Q"
   dataCategory: "Post Comments"
+  dataCategoryID: "DIC_kwDON1R6_c4CnCYA"
